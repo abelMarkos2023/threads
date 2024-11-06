@@ -4,6 +4,7 @@ import { fetchThreadById } from '@/lib/actions/thread.actions'
 import { fetchUser } from '@/lib/actions/user.actions'
 
 import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from 'next/navigation';
 
 import React from 'react'
 
@@ -12,6 +13,8 @@ const page = async ({params}:{params: {id: string}}) => {
     const thread = await fetchThreadById(params.id)
 
     const user = await currentUser();
+
+    if(!user) return redirect('/sign-in');
 
     const userInfo = await fetchUser(user.id);
 
@@ -36,7 +39,6 @@ const page = async ({params}:{params: {id: string}}) => {
               createdAt = {thread.createdAt}
               comments = {thread.children}
               community = {thread.community}
-              userId = {user?.id}
             
             />
         </div>
@@ -60,7 +62,6 @@ const page = async ({params}:{params: {id: string}}) => {
                 createdAt = {childThread.createdAt}
                 comments = {childThread.children}
                 community = {childThread.community}
-                userId = {user?.id}
                 isComment
               />)
             }
