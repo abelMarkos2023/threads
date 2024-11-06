@@ -11,13 +11,13 @@ async function Page(){
 
   if(!user) return null;
 
-  const userInfo = await fetchUser(user.id);
+  const userInfo = await fetchUser(user?.id);
 
   
 
   if(!userInfo) return redirect('/');
 
-  const activities = await getActivities(userInfo._id);
+  const activities = await getActivities(userInfo?._id);
 
 
   return (

@@ -9,7 +9,7 @@ async function CreateThread(){
 
     if(!user) return null;
 
-    const userInfo = await fetchUser(user.id);
+    const userInfo = await fetchUser(user?.id);
 
     if(!userInfo) return redirect('/');
 

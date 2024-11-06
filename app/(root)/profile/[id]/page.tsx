@@ -15,8 +15,8 @@ const Profile = async ({params}:{params:{id:string}}) => {
 
     if(!user) return null;
 
-    const loggedUser = await fetchUser(user.id);
-    const profileUser = await fetchUser(params.id);
+    const loggedUser = await fetchUser(user?.id);
+    const profileUser = await fetchUser(params?.id);
     
 
     if(!loggedUser || !profileUser) return redirect('/');

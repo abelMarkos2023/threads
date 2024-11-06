@@ -16,7 +16,7 @@ const page = async ({params}:{params: {id: string}}) => {
 
     if(!user) return redirect('/sign-in');
 
-    const userInfo = await fetchUser(user.id);
+    const userInfo = await fetchUser(user?.id);
 
 
     if(!user || !userInfo){
